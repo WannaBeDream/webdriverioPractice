@@ -1,4 +1,5 @@
 const assert = require('assert');
+const { Console } = require('console');
 
 describe("web driver io page", () => {
 
@@ -165,7 +166,7 @@ describe("web driver io page", () => {
 
 
 
-    it('homework from lesson 14 is done', async () => {
+    xit('homework from lesson 14 is done', async () => {
         await browser.url('https://webdriver.io/docs/api');
         const jsonWireLink = await $('//*[text()="JSONWire protocol"]').getAttribute('href');
         await browser.newWindow(jsonWireLink);
@@ -191,4 +192,95 @@ describe("web driver io page", () => {
         console.log("href blog focusing is " + await blogLink.isFocused());
     })
 
+    // Homework from 21 lesson
+
+    xit('should not contact sales with not valid credentials', async () => {
+        await browser.url('https://github.com/');
+        const contactSalesLink = await $('a[href="https://enterprise.github.com/contact?ref_page=/&ref_cta=Contact%20Sales&ref_loc=footer%20launchpad"]');
+        await contactSalesLink.click();
+        await $('input#name').setValue('');
+        await $('input#company').setValue('');
+        console.log("Contact button's clickble was: " + await $("//button[contains(text(),'Contact Sales')]").isClickable());
+    })
+
+    // 1) Test case:
+    // Title: Contact with sales with not valid credentials.
+    //      Steps:
+    //          1. Go tp github.
+    //          2. Click "Conact Sales" button.
+    //          3. Clear inputs name and company.
+    //          4. Click "Contact Sales>" button.
+    //      Expected result: Nothing happens. Contact sales button was disabled.
+
+    xit('Look at the best product at the github store', async () => {
+        await browser.url('https://thegithubshop.com/collections/best-sellers')
+        const productImageLink = await $('//img[@src="//cdn.shopify.com/s/files/1/0051/4802/products/stickers_packs_sampler_600x600_crop_center.png?v=1624559367"]');
+        await productImageLink.saveScreenshot('productImage.png') 
+    })
+
+    // 2) Test case:
+    // Title: Look at the best product at the github store.
+    //      Steps:
+    //          1. Go to github store best products page.
+    //          2. Save screenshot of the product.
+    //      Expected result: Must have one screenshot of the product.
+
+    xit('should add product into the cart', async () => {
+        await browser.url('https://thegithubshop.com/collections/best-sellers')
+        const productLink = await $('//img[@src="//cdn.shopify.com/s/files/1/0051/4802/products/stickers_packs_sampler_600x600_crop_center.png?v=1624559367"]');
+        await productLink.click();
+        const addToCartButton = await $('//button[@type="submit" and @name="add"]');
+        await addToCartButton.click();
+        const productCell = await $('//a[text()="Sticker Packs"]')
+        await productCell.saveScreenshot('productCellScreenshot.png');
+    })
+    
+    // 3) Test case:
+    // Title: Add product in cart.
+    //      Steps:
+    //          1. Go to github store best products page.
+    //          2. Click on the any product.
+    //          3. Click "Add to cart" button.
+    //          4. Save screenshot with product name.
+    //      Expected result: THe item should append in the cart. Cart icon should displayed "1" number. Shoping cart table was displayed data of product.
+
+    xit('should show github profile data', async () => {
+        await browser.url('https://github.com/')
+        const searchInput = await $('//input[@placeholder="Search GitHub"]');
+        await searchInput.setValue('Magnifikate');
+        const searchLink = await $('//a[*="Magnifikate" and @data-item-type="global_search"]');
+        await searchLink.click();
+        const usersLink = await $('a.menu-item[href*="users"]')
+        await usersLink.click();
+        const targetNameOfAccount = await $('//a[@href="/WannaBeDream"]')
+        await targetNameOfAccount.click();
+        await $('img.avatar-user.width-full').saveScreenshot('githubAvatar.png')
+    })
+
+     // 4) Test case:
+    // Title: Look at user profile.
+    // Preporation: account target name = Magnifikate, target account link's name = WannaBeDream
+    //      Steps:
+    //          1. Go to github.
+    //          2. Type account target name to search input.
+    //          3. Click to search link.
+    //          4. Click to users link.
+    //          5. Click to target account link's name.
+    //          6. Save screenshot of current avatar.
+    //      Expected result: Should displayed profile page of account target name. Should have taken a screenshot of the avatar.
+
+    it('should drop pop-up and show explore', async () => {
+        await browser.url('https://github.com/')
+        const explorePopup = await $('//*[contains(@class,"HeaderMenu-summary") and contains(text(),"Explore")]');
+        await explorePopup.click();
+        const ExploreGithubLink = await $('//*[contains(@href,"/explore") and contains(text(),"Explore GitHub")]');
+        console.log("Explore Explore github link was: " + await ExploreGithubLink.isClickable())
+    })
+
+    // 5) Test case:
+    // Title: Look at pop-up Explore.
+    //      Steps:
+    //          1. Go to github.
+    //          2. Click link Explore to open pop-up.
+    //      Expected result: Explore github link was displayed and clickble.
 })
