@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npx wdio run ./wdio.conf.js"
+    "test": "npx wdio run ./wdio.conf.js "
   },
   "keywords": [],
   "author": "",
@@ -22,6 +22,8 @@
     "@wdio/spec-reporter": "^7.12.5",
     "@wdio/sync": "^7.12.5",
     "chromedriver": "^93.0.1",
+    "dotenv": "^10.0.0",
+    "faker": "^5.5.3",
     "wdio-chromedriver-service": "^7.2.0"
   }
 }
