@@ -38,7 +38,7 @@ class SignInPage extends Page {
     open() {
         super.open('/login')
     }
-    pause(value = 1000) {
+    pause(value = 2000) {
         super.pause(value)
     }
     checkIfElementDisplayed(e) {

@@ -38,7 +38,7 @@ class PasswordResetPage extends Page {
     open() {
         super.open('/password_reset')
     }
-    pause(value = 1000) {
+    pause(value = 2000) {
         super.pause(value)
     }
     checkIfElementDisplayed(e) {

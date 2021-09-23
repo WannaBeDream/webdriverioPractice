@@ -23,5 +23,7 @@ export default class Page {
     checkForUrl(Url) {
         return expect(browser).toHaveUrl(Url);
     }
-
+    toHaveUrlContaining(value) {
+        return expect(browser).toHaveUrlContaining(value)
+    }
 }

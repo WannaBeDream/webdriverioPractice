@@ -35,7 +35,7 @@ class JoinPage extends Page {
     open() {
         super.open('/join?recommend_plan=true&ref_cta=Join%2520for%2520free&ref_loc=pricing%2520comparison&ref_page=%2Fpricing&source=pricing-comparison-free')
     }
-    pause(value = 1000) {
+    pause(value = 2000) {
         super.pause(value)
     }
     checkIfElementDisplayed(e) {

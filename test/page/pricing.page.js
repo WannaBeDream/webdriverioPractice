@@ -12,7 +12,7 @@ class PricingPage extends Page {
     open() {
         super.open('/pricing')
     }
-    pause(value = 1000) {
+    pause(value = 2000) {
         super.pause(value)
     }
 

@@ -4,7 +4,7 @@ class SignUpPage extends Page {
 
 
     get pageUrl() {
-        return 'https://github.com/signup';
+        return 'https://github.com/signup?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2F&source=header-home';
     }
     get emailInput() {
         return $('#email');
@@ -63,7 +63,7 @@ class SignUpPage extends Page {
     open() {
         super.open('/signup')
     }
-    pause(value = 1000) {
+    pause(value = 2000) {
         super.pause(value)
     }
     checkForUrl(url) {
